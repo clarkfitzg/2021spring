@@ -122,6 +122,8 @@ They even offer guidance on where to put the file.
 
 > If processors don't see an appropriate Link header, they will append -metadata.json to the end of the URL of the CSV file to try to find metadata for it. If they can't find a metadata file there, they will look in the directory containing the CSV file for a file called csv-metadata.json and use that file.
 
+TODO: Write out metadata following W3C for the example above.
+
 
 ## Scale, Distributed and Parallel Computing
 
@@ -167,22 +169,43 @@ What software is necessary for it to be useful?
 4. SQL engine.
     Implement a subset of SQL to work on data stored in this format.
 4. Tools to generate code to process large data sets given input programs.
-    This requires metaprogramming, and I'll draw on my PhD research here.
+    This requires metaprogramming, and I can draw on my PhD research here.
 
 
 ## Proof of Concept
 
 How will we demonstrate that this storage pattern is useful?
 
+1. Case studies comparing code complexity for processing a large data set in regular CSV format, and with the new storage pattern.
+2. Compare performance between CSV, this storage pattern, and high performance binary formats like Parquet.
+3. Demonstration of the flexibility in writing pipelines with multiple languages. 
+    For example, do something convenient in Python and then pass it to R for another step.
+4. A GUI front end to allow someone to click through and specify a bunch of data processing steps.
+    Not sure this is a good idea.
+
 
 ## Conclusion
 
 This UNIX idea of simple text streams is one of the oldest in computer science.
 We're simply applying the UNIX ideas to data science / analytical data processing.
+Our goal is to democratize data access, by lowering the bar to make working with large data sets simpler, easier, cheaper, and more convenient for more people.
 
 What to call this storage pattern?
-Some ideas:
+Well, it's a table, with columns stored as text, with metadata to make it self describing, and columns broken into chunks for parallel programming.
+The key words are:
 
-- column text
-- text columns
-- column text chunks
+- table, text, stream, columns, chunk, self-describing, simple, directory, data, storage
+
+Can we make a clever acronym out of these words?
+
+- text columns in a directory TCID
+- column text in a directory CTID
+- self describing columnar text table SDCTT
+- simple text columns STC
+- simple text data STD
+- simple text table STT
+- self describing text column table SDTCD
+
+Meh, I guess we should just say what's most important.
+
+text column structure TCS
