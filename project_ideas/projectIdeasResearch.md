@@ -48,3 +48,5 @@ In this study they used multiple input variables. For example
 * Distance to road: Distance to nearest road serving > 25000 people
 * Land cover NO2 concentration Mean NO2 concentration (by survey period, and modelled annual mean)
 * Topographical exposure: Mean difference in altitude between each pixel and the eight surrounding pixels
+
+[Need to read](https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0135749)
