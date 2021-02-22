@@ -18,7 +18,7 @@
 * This doesn't seem to be live anymore
 
 # Power from wind: Open data on AWS by Caleb Phillips, Caroline Draxl, John Readey, Jordan Perr-Sauer
-* I was able to successfully 
+* Explains the HSDS REST API provided for wind data
 
 # Wind Visualization by Jordan Perr-Sauer
 This tool can be useful during our initial setup of our wind data because it would allow us to view values to ensure it's working. However, beyond that this tool is simply a Javascript visualization of the WIND data but doesn't provide any additional usage.
