@@ -1,10 +1,9 @@
 import csv
-import re
 import os
 import time
 import glob
 
-class CoplConverter:
+class Copl:
 	'''
 	This class will be used to convert to and from Copl files
 	'''
@@ -48,5 +47,38 @@ class CoplConverter:
 		end = time.time()
 		return end - start
 
-converter = CoplConverter()
-converter.allLocalFiles()
+	def loadColumns(self, copl_file, columns):
+		'''
+		file: the name of the folder what contains the columns
+		columns: column names to return
+		returns a list with the column values in it
+		'''
+		return_list = []
+		for column in columns:
+			return_list.append(self.loadColumn(copl_file, column))
+		return return_list
+
+	def loadColumn(self, copl_file, column):
+		return_list = []
+		# Get full path to copl column
+		column_file = os.path.join(copl_file, column)
+		# Finds the total rows in the file
+		with open(column_file, 'r') as file:
+			reader = csv.reader(file, delimiter='\n')
+			for line in reader:
+				try:
+					return_list.append(line[0])
+				except Exception as e:
+					continue
+		return return_list
+
+# Runs repeatedly with an additional column until the search goes through everything
+converter = Copl()
+for i in range(1,16):
+	start = time.time()
+	columnsToSearch = []
+	for column in range(1, i+1):
+		columnsToSearch.append(f'column{column}.txt')
+	rows = converter.loadColumns("ignore_test", columnsToSearch)
+	end = time.time()
+	print(f'Searched {len(columnsToSearch)} columns with {len(rows[0])} rows in {(end-start):.2f} seconds')
