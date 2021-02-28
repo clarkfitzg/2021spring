@@ -10,7 +10,7 @@ class Copl:
 
 	def allLocalFiles(self):
 		'''Will run conversion on all .csv files in this directory'''
-		print(f'name\tstart size\time seconds')
+		print(f'name\tstart size\ttime')
 		for csv_file in glob.glob('*.csv'):
 			time = self.convertCSVtoCOPL(csv_file)
 			file_size = os.path.getsize(csv_file)
@@ -82,3 +82,5 @@ for i in range(1,16):
 	rows = converter.loadColumns("ignore_test", columnsToSearch)
 	end = time.time()
 	print(f'Searched {len(columnsToSearch)} columns with {len(rows[0])} rows in {(end-start):.2f} seconds')
+
+converter.allLocalFiles()
