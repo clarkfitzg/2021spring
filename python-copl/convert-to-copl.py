@@ -4,73 +4,49 @@ import os
 import time
 import glob
 
-# Will run conversion on all .csv files in this directory
-def allLocalFiles():
-	print(f"name\tstart size\time seconds")
-	for csv_file in glob.glob("*.csv"):
-		time = convertCSVtoCOPL(csv_file)
-		file_size = os.path.getsize(csv_file)
-		print(f"{csv_file}\t{file_size}\t{time:.2f}")
+class CoplConverter:
+	'''
+	This class will be used to convert to and from Copl files
+	'''
 
-# Conversion function for each .csv file
-def convertCSVtoCOPL(csv_file):
-	total_rows = 0
+	def allLocalFiles(self):
+		'''Will run conversion on all .csv files in this directory'''
+		print(f'name\tstart size\time seconds')
+		for csv_file in glob.glob('*.csv'):
+			time = self.convertCSVtoCOPL(csv_file)
+			file_size = os.path.getsize(csv_file)
+			print(f'{csv_file}\t{file_size}\t{time:.2f}')
 
-	start = time.time()
-	# Gets folder name from csv
-	new_folder_name = os.path.splitext(csv_file)[0]
-	if(not os.path.isdir(new_folder_name)):
-		os.mkdir(new_folder_name)
+	def convertCSVtoCOPL(self, csv_file):
+		'''Conversion function for each .csv file'''
+		total_rows = 0
 
-	# Finds the total rows in the file
-	with open(csv_file, 'r') as file:
-		reader = csv.reader(file)
-		for row in reader:
-			if (len(row) > total_rows):
-				total_rows = len(row)
+		start = time.time()
+		# Gets folder name from csv
+		new_folder_name = os.path.splitext(csv_file)[0]
+		if(not os.path.isdir(new_folder_name)):
+			os.mkdir(new_folder_name)
 
-	# Writes rows to new files
-	for i in range(0,total_rows):
+		# Finds the total rows in the file
 		with open(csv_file, 'r') as file:
 			reader = csv.reader(file)
-			column_file = os.path.join(new_folder_name, f"column{i+1}.txt")
-			if (os.path.exists(column_file)):
-				os.remove(column_file)
-			f = open(column_file, "a")
 			for row in reader:
-				f.write(row[i]+"\n")
-			f.close()
-	end = time.time()
-	return end - start
+				if (len(row) > total_rows):
+					total_rows = len(row)
 
-def convertCSVtoCOPLpandas(csv_file):
-	total_rows = 0
+		# Writes rows to new files
+		for i in range(0,total_rows):
+			with open(csv_file, 'r') as file:
+				reader = csv.reader(file)
+				column_file = os.path.join(new_folder_name, f'column{i+1}.txt')
+				if (os.path.exists(column_file)):
+					os.remove(column_file)
+				f = open(column_file, 'a')
+				for row in reader:
+					f.write(row[i]+'\n')
+				f.close()
+		end = time.time()
+		return end - start
 
-	start = time.time()
-	# Gets folder name from csv
-	new_folder_name = os.path.splitext(csv_file)[0]
-	if(not os.path.isdir(new_folder_name)):
-		os.mkdir(new_folder_name)
-
-	# Finds the total rows in the file
-	with open(csv_file, 'r') as file:
-		reader = csv.reader(file)
-		for row in reader:
-			if (len(row) > total_rows):
-				total_rows = len(row)
-
-	# Writes rows to new files
-	for i in range(0,total_rows):
-		with open(csv_file, 'r') as file:
-			reader = csv.reader(file)
-			column_file = os.path.join(new_folder_name, f"column{i+1}.txt")
-			if (os.path.exists(column_file)):
-				os.remove(column_file)
-			f = open(column_file, "a")
-			for row in reader:
-				f.write(row[i]+"\n")
-			f.close()
-	end = time.time()
-	return end - start
-
-allLocalFiles()
+converter = CoplConverter()
+converter.allLocalFiles()
