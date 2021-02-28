@@ -50,9 +50,10 @@ For example, the data lakes that businesses store.
 The transactional systems put it all there, and there it sits, ready to be mined, or to do some hypothesis tests, stats, machine learning, whatever.
 
 Databases offer many features that we don't really need for this use case.
-For example, we don't usually update rows, so we can forget about that.
+For example, we don't usually update rows in place, so we can forget about that.
 
-When I've written code to process huge CSV files, it usually uses the same pattern over and over.
+When I've written code to process huge CSV files, it usually uses the same pattern of chunking through `stdin` over and over.
+This pattern is not that common in the R world.
 Why not generate this code?
 
 
@@ -153,6 +154,7 @@ In our example above, we would have a directory structure like the following:
 ### Specialization to grouped computations
 
 For a computation like `median(income) GROUP BY country` where `country` is any column with categorical values, we would want to organize the data chunks so that each chunk contains all the values for that group, `country` here.
+Then we need to tell the computer about it in the metadata.
 
 
 ## Software
@@ -208,4 +210,4 @@ Can we make a clever acronym out of these words?
 
 Meh, I guess we should just say what's most important.
 
-text column structure TCS
+column oriented plain text
