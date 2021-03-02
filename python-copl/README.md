@@ -23,3 +23,94 @@
 - ignore_gsquarterlySeptember20.csv	73824486	20.65
 - ignore_services_classification.csv	2828		0.02
 - ignore_test.csv						82533516	47.74
+
+# End User Manual
+
+How would I like use this code?
+
+Suppose I have a table called `people` stored in CTF.
+
+TODO: Define and describe `people` table.
+
+```bash
+$ cat people.csv
+names       age
+Shawheen    21
+Julian      20
+Clark       34
+```
+
+I want to access a column called `names` from this table.
+
+```SQL
+SELECT names FROM people
+```
+
+Assume that `people` is a directory containing the CTF data.
+
+```python
+import CTF
+
+names = CTF.load_column("people", "names")
+```
+
+TODO: look at `load_column`, see what the most common name is for reading / loading data.
+How closely can we copy `csv` from the standard library?
+
+Use case: it would be great if we could access the data as a stream, without necessarily loading everything in memory.
+We can get this feature by having `names` be an iterator or generator over the column values.
+ 
+Example processing names:
+
+```
+from Collections import Counter
+
+counts = Counter(names)
+```
+
+## Use case 2 - column types
+
+```
+age = CTF.load_column("people", "age")
+```
+
+`age` should generate integer values corresponding to each entry of the `age` column.
+CTF knows that the `age` column means integer because of the metadata file in the `people` directory.
+TODO: link to W3 standard.
+
+```
+# User should not write this- it's just the idea we want
+def create_age():
+    for x in [21, 20, 34]:
+        yield x
+
+age = create_age()
+
+# User can do something like this:
+>>> list(age)
+[21, 20, 34]
+```
+
+
+## Use case 3 - compatibility with `csv`
+
+```
+import csv
+
+# Referring to file `people.csv` in CSV format
+r = csv.reader("people.csv")
+
+# Referring to directory `people` in CTF format
+r2 = CTF.reader("people")
+```
+
+`r2` should essentially be a drop in replacement for `r`.
+
+```
+for row in r:
+    process(row)
+```
+
+TODO: Process a csv file using Python's `csv` package- any kind of data analysis is fine.
+For example, find the set of all values in one column.
+

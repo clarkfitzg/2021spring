@@ -210,4 +210,6 @@ Can we make a clever acronym out of these words?
 
 Meh, I guess we should just say what's most important.
 
-column oriented plain text
+column text CT
+
+column text format CTF
