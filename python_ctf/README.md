@@ -114,3 +114,7 @@ for row in r:
 TODO: Process a csv file using Python's `csv` package- any kind of data analysis is fine.
 For example, find the set of all values in one column.
 
+# Python notes
+I used this link for helping me construct the iterable.
+[Python special methods](https://levelup.gitconnected.com/python-dunder-methods-ea98ceabad15)
+[W3C metadata](https://www.w3.org/TR/tabular-metadata/)

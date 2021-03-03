@@ -2,21 +2,29 @@ import csv
 import os
 import time
 import glob
+from column import Column
 
-class Copl:
+class Ctf:
 	'''
-	This class will be used to convert to and from Copl files
+	This class will be used to convert to and from Ctf files
 	'''
 
-	def allLocalFiles(self):
+	def __init__(self, file_name):
+		self.file_name = file_name
+
+	def __getitem__(self, column_key):
+		full_path = os.path.join(self.file_name, column_key)
+		return Column(full_path)
+
+	def convert_local_files(self):
 		'''Will run conversion on all .csv files in this directory'''
 		print(f'name\tstart size\ttime')
 		for csv_file in glob.glob('*.csv'):
-			time = self.convertCSVtoCOPL(csv_file)
+			time = self.convert_csv_to_ctf(csv_file)
 			file_size = os.path.getsize(csv_file)
 			print(f'{csv_file}\t{file_size}\t{time:.2f}')
 
-	def convertCSVtoCOPL(self, csv_file):
+	def convert_csv_to_ctf(self, csv_file):
 		'''Conversion function for each .csv file'''
 		total_rows = 0
 
@@ -47,7 +55,7 @@ class Copl:
 		end = time.time()
 		return end - start
 
-	def loadColumns(self, copl_file, columns):
+	def load_columns(self, ctf_file, columns):
 		'''
 		file: the name of the folder what contains the columns
 		columns: column names to return
@@ -55,13 +63,13 @@ class Copl:
 		'''
 		return_list = []
 		for column in columns:
-			return_list.append(self.loadColumn(copl_file, column))
+			return_list.append(self.load_column(ctf_file, column))
 		return return_list
 
-	def loadColumn(self, copl_file, column):
+	def load_column(self, ctf_file, column):
 		return_list = []
-		# Get full path to copl column
-		column_file = os.path.join(copl_file, column)
+		# Get full path to ctf column
+		column_file = os.path.join(ctf_file, column)
 		# Finds the total rows in the file
 		with open(column_file, 'r') as file:
 			reader = csv.reader(file, delimiter='\n')
@@ -71,16 +79,3 @@ class Copl:
 				except Exception as e:
 					continue
 		return return_list
-
-# Runs repeatedly with an additional column until the search goes through everything
-converter = Copl()
-for i in range(1,16):
-	start = time.time()
-	columnsToSearch = []
-	for column in range(1, i+1):
-		columnsToSearch.append(f'column{column}.txt')
-	rows = converter.loadColumns("ignore_test", columnsToSearch)
-	end = time.time()
-	print(f'Searched {len(columnsToSearch)} columns with {len(rows[0])} rows in {(end-start):.2f} seconds')
-
-converter.allLocalFiles()
