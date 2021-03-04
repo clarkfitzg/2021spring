@@ -1,11 +1,17 @@
 from ctf import Ctf
 
 ctf_file = Ctf("ignore_country_classification")
-for item in ctf_file["column1"]:
-	print(item)
-col =  ctf_file["column1"]
-print(list(col))
-print(len(col))
+# for item in ctf_file["column1"]:
+# 	print(item)
+
+for row in ctf_file:
+	print(row)
+
+list(ctf_file)
+
+# col =  ctf_file["column1"]
+# print(list(col))
+# print(len(col))
 
 
 # # Runs repeatedly with an additional column until the search goes through everything

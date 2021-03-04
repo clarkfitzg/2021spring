@@ -1,3 +1,5 @@
+import os
+
 class Column:
 	'''
 	The column object is returned as an iterable for each column that needs to be accessed. 
@@ -12,7 +14,10 @@ class Column:
 
 	def __init__(self, file_name, data_type = str):
 		'''Sets up the column name that will be accessed'''
-		self.file_name = file_name + ".txt"
+		file_name_only, extension = os.path.splitext(file_name)
+		if (extension == ''):
+			self.file_name = file_name + ".txt"
+		self.file_name = file_name
 		self.data_type = data_type
 		# self.column_file
 

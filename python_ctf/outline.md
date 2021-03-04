@@ -1,7 +1,0 @@
-- Ctf modeled after csv and dictionary
-	- [x] Column accessed with ["column_name"]
-	- [ ] Can convert a csv file to ctf
-	- [ ] Reader runs like csv reader returning iterable rows
-	- [ ] class Row to give a guide for adding new columns using values from metadata.json
-	- [ ] Use custom exceptions
-	- [ ] Get type from metadata.json or autodetect

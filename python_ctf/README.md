@@ -118,3 +118,13 @@ For example, find the set of all values in one column.
 I used this link for helping me construct the iterable.
 [Python special methods](https://levelup.gitconnected.com/python-dunder-methods-ea98ceabad15)
 [W3C metadata](https://www.w3.org/TR/tabular-metadata/)
+
+# Outline
+- Ctf modeled after csv and/or dictionary
+    - [ ] Should Ctf be accessed with a reader like csv or through itself like a dictionary
+    - [x] Column accessed with ["column_name"]
+    - [ ] Can convert a csv file to ctf
+    - [ ] Reader runs like csv reader returning iterable rows
+    - [ ] class Row to give a guide for adding new columns using values from metadata.json
+    - [ ] Use custom exceptions
+    - [ ] Get type from metadata.json or autodetect
