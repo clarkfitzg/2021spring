@@ -128,3 +128,15 @@ I used this link for helping me construct the iterable.
     - [ ] class Row to give a guide for adding new columns using values from metadata.json
     - [ ] Use custom exceptions
     - [ ] Get type from metadata.json or autodetect
+
+```python
+with Ctf.open() as ctf_file:
+    ctf_file["column"]
+    for row in ctf_file:
+        print(row)
+```
+
+```python
+Ctf.open()
+Ctf.close()
+```

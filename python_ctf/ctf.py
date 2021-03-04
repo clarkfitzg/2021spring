@@ -3,6 +3,7 @@ import os
 import time
 import glob
 from column import Column
+from row import Row
 
 class Ctf:
     '''
@@ -13,6 +14,7 @@ class Ctf:
         self.file_name = file_name
 
     def __getitem__(self, column_key):
+        '''Treats data like a dictionary, retuns iter when called as ctf_file['column']'''
         full_path = os.path.join(self.file_name, column_key)
         return Column(full_path)
 
