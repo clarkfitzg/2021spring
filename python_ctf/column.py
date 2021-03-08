@@ -19,6 +19,8 @@ class Column:
             self.file_name = file_name + ".txt"
         else:
             self.file_name = file_name
+        if (not os.path.exists(self.file_name)):
+            raise FileNotFoundError(f'{self.file_name} does not exist')
         self.data_type = data_type
 
     def __iter__(self):

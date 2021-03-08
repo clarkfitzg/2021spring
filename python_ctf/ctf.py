@@ -3,7 +3,6 @@ import os
 import time
 import glob
 from column import Column
-from row import Row
 
 class Ctf:
     '''
