@@ -114,3 +114,29 @@ for row in r:
 TODO: Process a csv file using Python's `csv` package- any kind of data analysis is fine.
 For example, find the set of all values in one column.
 
+# Python notes
+I used this link for helping me construct the iterable.
+[Python special methods](https://levelup.gitconnected.com/python-dunder-methods-ea98ceabad15)
+[W3C metadata](https://www.w3.org/TR/tabular-metadata/)
+
+# Outline
+- Ctf modeled after csv and/or dictionary
+    - [ ] Should Ctf be accessed with a reader like csv or through itself like a dictionary
+    - [x] Column accessed with ["column_name"]
+    - [ ] Can convert a csv file to ctf
+    - [ ] Reader runs like csv reader returning iterable rows
+    - [ ] class Row to give a guide for adding new columns using values from metadata.json
+    - [ ] Use custom exceptions
+    - [ ] Get type from metadata.json or autodetect
+
+```python
+with Ctf.open() as ctf_file:
+    ctf_file["column"]
+    for row in ctf_file:
+        print(row)
+```
+
+```python
+Ctf.open()
+Ctf.close()
+```
