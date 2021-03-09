@@ -143,3 +143,63 @@ with open('names.csv', 'w', newline='') as csvfile:
     writer.writerow({'first_name': 'Lovely', 'last_name': 'Spam'})
     writer.writerow({'first_name': 'Wonderful', 'last_name': 'Spam'})
 ```
+
+------------------------------------------------------------
+
+```
+import csv
+
+with open('names.csv', 'w', newline='') as csvfile:
+    has_header = csv.Sniffer().has_header(csvfile.read(1024))
+```
+
+Becomes:
+
+```
+has_header = ctf.Sniffer().has_header('names.csv')
+has_header = ctf.Sniffer().has_header('names')
+if(has_header):
+    print(ctf_file['first_name'])
+else:
+    print(ctf_file[1])
+```
+
+------------------------------------------------------------
+
+Multiple column selection
+```
+columns = [ctf_file['column1'], ctf_file['column2']]
+for row in columns
+    print(row)
+> ['data1', 'data in column2']
+```
+
+```
+columns = ctf_file.columns('column1', 'column2')
+for row in columns
+    print(row['column1'])
+> 'data1'
+```
+
+How pandas does this
+```
+columns = ctf_file[['column1', 'column2']]
+# columns will be a CTF object with only these two columns
+# OR
+# columns will be the same CTF object with an internal variable set for these columns
+for row in columns
+    print(row['column1'])
+> 'data1'
+```
+
+```
+ctf_file = ctf.Ctf('country_codes', columns=['column1', 'column1'])
+for row in ctf_file
+    print(row['column1'] + row['column2'])
+> 'data1data in column2'
+```
+
+# Make ctf[] return a ctf object always rather than a column object
+
+Questions:
+- Writing to ctf, if we are writing 30 rows to 10 different columns, should we write 10 lines into each file 30 times or write 1 value to each 30 times, then repeat 10 times. How do we handle crashes?

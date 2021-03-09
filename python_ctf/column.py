@@ -41,7 +41,7 @@ class Column:
         return row
 
     def __len__(self):
-        '''Returns the length of the column'''
+        '''Returns the length of the column without loading the data into memory'''
         with open(self.file_name) as opened_file:
             for index, value in enumerate(opened_file):
                 pass
