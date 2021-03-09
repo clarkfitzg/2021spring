@@ -5,7 +5,7 @@ Which examples can we hope to duplicate with CTF?
 
 Starts with `eggs.csv` a file.
 
-```
+```python
 >>> import csv
 >>> with open('eggs.csv', newline='') as csvfile:
 ...     spamreader = csv.reader(csvfile, delimiter=' ', quotechar='|')
@@ -22,7 +22,7 @@ Becomes:
 Starting with a directory called `eggs`.
 
 
-```
+```python
 >>> import ctf
 >>> spamreader = ctf.reader("eggs", quotechar='|')
 ... for row in spamreader:
@@ -41,7 +41,7 @@ Going beyond:
 
 One column:
 
-```
+```python
 >>> first_column = ctf.Ctf("eggs")["c1"]
 ... for v in first_column:
 ...     print(v)
@@ -53,7 +53,7 @@ Spam
 
 Original:
 
-```
+```python
 with open('eggs.csv', 'w', newline='') as csvfile:
     spamwriter = csv.writer(csvfile, delimiter=' ',
                             quotechar='|', quoting=csv.QUOTE_MINIMAL)
@@ -67,7 +67,7 @@ Error when we try to write rows with different lengths.
 
 If we specify what's missing it can work:
 
-```
+```python
 with ctf.Ctf('eggs', quotechar='|', quoting=csv.QUOTE_MINIMAL) as spamwriter:
     spamwriter.writerow(['Spam'] * 5 + ['Baked Beans'])
     spamwriter.writerow(['Spam', 'Lovely Spam', NULL, 'Wonderful Spam', NULL, NULL])
@@ -88,14 +88,14 @@ Conversion:
 
 Maybe, not so sure how this should work.
 
-```
+```python
 ctf.convert('eggs.csv')
 ```
 
 ------------------------------------------------------------
 
 
-```
+```python
 >>> import csv
 >>> with open('names.csv', newline='') as csvfile:
 ...     reader = csv.DictReader(csvfile)
@@ -112,7 +112,7 @@ John Cleese
 Becomes:
 
 
-```
+```python
 >>> with Ctf.DictReader('names') as reader:
 ...     for row in reader:
 ...         print(row['first_name'], row['last_name'])
@@ -131,7 +131,7 @@ Dictionaries use the column names, while lists use integer indexes.
 
 ------------------------------------------------------------
 
-```
+```python
 import csv
 
 with open('names.csv', 'w', newline='') as csvfile:
@@ -146,7 +146,7 @@ with open('names.csv', 'w', newline='') as csvfile:
 
 ------------------------------------------------------------
 
-```
+```python
 import csv
 
 with open('names.csv', 'w', newline='') as csvfile:
@@ -155,7 +155,7 @@ with open('names.csv', 'w', newline='') as csvfile:
 
 Becomes:
 
-```
+```python
 has_header = ctf.Sniffer().has_header('names.csv')
 has_header = ctf.Sniffer().has_header('names')
 if(has_header):
@@ -167,14 +167,14 @@ else:
 ------------------------------------------------------------
 
 Multiple column selection
-```
+```python
 columns = [ctf_file['column1'], ctf_file['column2']]
 for row in columns
     print(row)
 > ['data1', 'data in column2']
 ```
 
-```
+```python
 columns = ctf_file.columns('column1', 'column2')
 for row in columns
     print(row['column1'])
@@ -182,7 +182,7 @@ for row in columns
 ```
 
 How pandas does this
-```
+```python
 columns = ctf_file[['column1', 'column2']]
 # columns will be a CTF object with only these two columns
 # OR
@@ -192,7 +192,7 @@ for row in columns
 > 'data1'
 ```
 
-```
+```python
 ctf_file = ctf.Ctf('country_codes', columns=['column1', 'column1'])
 for row in ctf_file
     print(row['column1'] + row['column2'])
