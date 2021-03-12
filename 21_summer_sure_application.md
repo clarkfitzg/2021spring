@@ -1,16 +1,12 @@
 # Faculty Research Justification
 
-Summer Undergraduate Research Experience
-
-Project: Column Text Format
 
 March 8, 2021
 
-Clark Fitzgerald
+Project: Column Text Format, Summer Undergraduate Research Experience
 
-Assistant Professor, Mathematics and Statistics Department
+Faculty: Clark Fitzgerald, Assistant Professor, Mathematics and Statistics Department
 
-------------------------------------------------------------
 
 I plan to spend most of this summer working closely with Shawheen on the project described here, and we have all the necessary resources in place to succeed.
 Shawheen has proven himself to be a bright, dedicated, and reliable student since joining in [last year's summer study group](https://github.com/clarkfitzg/summer20euler), and I am confident in his ability to succeed in this project.
@@ -38,24 +34,24 @@ Our main idea is to store the columns as individual text files, which will addre
 Secondly, we will supplement these text files with a metadata file adapted to data science use cases from the existing [W3C specification](https://www.w3.org/TR/tabular-data-model/) to apply the best practices and solution to the column ambiguity problem from the web development community to a data science application.
 
 This summer we plan to produce an open source software implementation and a draft of a paper describing this new data format, which we call Column Text Format, or CTF.
-We will release the software to the pulic by publishing it on the [Python Package Index](https://pypi.org/).
+We will release the software publicly by publishing it on the [Python Package Index](https://pypi.org/).
 Depending on our progress on the paper by the end of the summer, we will consider submitting it to an open access academic journal such as the [Journal of Statistical Software](https://www.jstatsoft.org/index) or the [Journal of Big Data](https://journalofbigdata.springeropen.com/articles).
 We also plan seek out opportunities for the students to present our work at conferences and meetups in the fall, for example, the [Bay Area R User Group](https://www.meetup.com/R-Users/) or the local [Sacramento Women in Data](https://www.meetup.com/Sacramento-Women-in-Data/).
 
 When working with Shawheen, I will provide direction, code reviews, and make sure that we're following best practices.
-Shawheen and another student, Julian Hernandez, have been working for a month on this software through Spring 2021 support from the SEE/IRA research program, and we've already accomplished the following.
+Shawheen and another student, Julian Hernandez, have been working for the past month together with me on this software through support from the SEE/IRA research program, and we've already demonstrated significant speedups using a minimal version of CTF.
+Much work still remains, and I expect Shawheen will spend time on the following tasks, which vary in complexity.
 
-1) Demonstrated a significant speedup using CTF.
-2) Created minimal software to read and write CTF.
-3) Learned the interface and design of the `csv` module in the Python standard library, which we plan to emulate in our software for compatibility.
+1) Write documentation so that users understand how to use the software.
+2) Define unit tests to verify the correct behavior of the software.
+3) Write case studies demonstrating the use cases for CTF.
+4) Benchmark and compare CTF against other data formats.
+6) Debug errors and profile code to identify performance issues.
+5) Improve the code and add features.
 
-Much work still remains, and Shawheen will join in all of 
-
-1) Writing 
-
-
-Over the course of the summer, I expect that Shawheen will write unit tests, documentation, and case studies, as well as directly implementing and improving the software.
-To reiterate, Shawheen has already proven himself capable, and now it's just a matter of 
+When deep technical problems arise in the above tasks, I will help out, as I don't want Shawheen to spend days in frustration.
+Overall, my goal is to keep Shawheen working at a level where he continuously builds confidence and practical competence.
+I anticipate no problems in this regard.
 
 
 ## Future
